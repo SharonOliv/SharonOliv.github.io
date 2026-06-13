@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sharon Olivia Chintala — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #0a0f1e;
+      --navy2:   #111827;
+      --teal:    #00e5c8;
+      --teal2:   #00b8a2;
+      --slate:   #1e2a3a;
+      --muted:   #8899aa;
+      --text:    #e2eaf4;
+      --white:   #ffffff;
+      --gold:    #f5c842;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 5vw;
+      background: rgba(10,15,30,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,229,200,0.1);
+    }
+    .nav-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.95rem;
+      color: var(--teal);
+      letter-spacing: 0.05em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 10rem 5vw 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-grid-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(0,229,200,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,200,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .hero-glow {
+      position: absolute; top: -20%; right: -10%;
+      width: 60vw; height: 60vw; max-width: 700px; max-height: 700px;
+      background: radial-gradient(circle, rgba(0,229,200,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--teal);
+      letter-spacing: 0.15em;
+      margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow span { opacity: 0.5; margin-right: 0.5rem; }
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.8rem, 7vw, 6rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      max-width: 800px;
+    }
+    h1 em {
+      font-style: normal;
+      color: var(--teal);
+    }
+    .hero-sub {
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 520px;
+      font-weight: 300;
+    }
+    .hero-ctas {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      margin-top: 2.5rem;
+    }
+    .btn-primary {
+      background: var(--teal);
+      color: var(--navy);
+      padding: 0.75rem 1.75rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--teal2); transform: translateY(-2px); }
+    .btn-outline {
+      border: 1px solid rgba(0,229,200,0.4);
+      color: var(--teal);
+      padding: 0.75rem 1.75rem;
+      border-radius: 4px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--teal); background: rgba(0,229,200,0.06); }
+    .hero-stats {
+      display: flex; gap: 3rem; flex-wrap: wrap;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--white);
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.2rem;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 5vw; }
+    section + section { border-top: 1px solid rgba(255,255,255,0.05); }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 3rem;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-text p { color: var(--muted); margin-bottom: 1.2rem; font-size: 1.05rem; }
+    .about-text p strong { color: var(--text); font-weight: 500; }
+    .about-badges { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; }
+    .badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 2px;
+      border: 1px solid rgba(0,229,200,0.25);
+      color: var(--teal);
+      background: rgba(0,229,200,0.05);
+    }
+    .education-card {
+      background: var(--slate);
+      border-left: 3px solid var(--teal);
+      border-radius: 0 6px 6px 0;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .edu-year { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--teal); margin-bottom: 0.4rem; }
+    .edu-degree { font-weight: 600; color: var(--white); }
+    .edu-inst { font-size: 0.9rem; color: var(--muted); margin-top: 0.2rem; }
+    .edu-score { display: inline-block; margin-top: 0.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--gold); }
+
+    /* ── EXPERIENCE ── */
+    .exp-timeline { position: relative; padding-left: 2rem; }
+    .exp-timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 0.5rem; bottom: 0;
+      width: 1px; background: rgba(0,229,200,0.2);
+    }
+    .exp-item {
+      position: relative;
+      margin-bottom: 3rem;
+    }
+    .exp-item::before {
+      content: '';
+      position: absolute; left: -2.4rem; top: 0.5rem;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 10px rgba(0,229,200,0.5);
+    }
+    .exp-date { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--teal); margin-bottom: 0.4rem; }
+    .exp-title { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--white); }
+    .exp-company { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.75rem; }
+    .exp-desc { color: var(--muted); font-size: 0.95rem; }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--slate);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px;
+      padding: 2rem;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--teal), transparent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .project-card:hover { border-color: rgba(0,229,200,0.3); transform: translateY(-4px); }
+    .project-card:hover::before { opacity: 1; }
+    .project-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem; color: var(--teal);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      margin-bottom: 0.8rem;
+    }
+    .project-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--white); margin-bottom: 0.75rem;
+    }
+    .project-desc { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .project-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.2rem; }
+    .tech-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+      background: rgba(0,229,200,0.08);
+      color: var(--teal);
+    }
+    .project-link {
+      font-size: 0.82rem; font-weight: 500;
+      color: var(--teal); text-decoration: none;
+      letter-spacing: 0.05em;
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .project-link:hover { border-color: var(--teal); }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-group {
+      background: var(--slate);
+      border-radius: 6px;
+      padding: 1.5rem;
+    }
+    .skill-group-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(0,229,200,0.15);
+    }
+    .skill-list { list-style: none; }
+    .skill-list li {
+      font-size: 0.88rem;
+      color: var(--text);
+      padding: 0.3rem 0;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .skill-list li::before {
+      content: '';
+      display: inline-block;
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--teal);
+      flex-shrink: 0;
+    }
+
+    /* ── ACHIEVEMENTS ── */
+    .achievements-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .achievement-item {
+      display: flex; gap: 1.25rem; align-items: flex-start;
+      background: var(--slate);
+      border-radius: 6px; padding: 1.5rem;
+    }
+    .ach-icon {
+      font-size: 1.5rem; flex-shrink: 0;
+      width: 2.5rem; text-align: center;
+    }
+    .ach-title { font-weight: 600; color: var(--white); margin-bottom: 0.3rem; }
+    .ach-desc { font-size: 0.88rem; color: var(--muted); }
+
+    /* ── CERTIFICATIONS ── */
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .cert-card {
+      background: var(--slate);
+      border-radius: 6px; padding: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .cert-issuer { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--teal); margin-bottom: 0.5rem; }
+    .cert-name { font-weight: 600; color: var(--white); margin-bottom: 0.3rem; }
+    .cert-date { font-size: 0.82rem; color: var(--muted); }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--slate); }
+    .contact-inner {
+      max-width: 600px;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 1rem;
+      color: var(--text); text-decoration: none;
+      font-size: 1rem;
+      padding: 1rem 1.5rem;
+      background: var(--navy);
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: border-color 0.2s;
+    }
+    .contact-link:hover { border-color: var(--teal); color: var(--teal); }
+    .contact-link-icon { font-size: 1.2rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem 5vw;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .nav-links { display: none; }
+      .hero-stats { gap: 2rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">sharon olivia </div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-eyebrow"><span>//</span> CS Student &amp; Full-Stack Developer</div>
+    <h1>Sharon<br/>Olivia<br/><em>Chintala.</em></h1>
+    <p class="hero-sub">Building secure, full-stack applications — and exploring the intersection of AI, cryptography, and environmental science.</p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">9.11</div>
+        <div class="stat-label">CGPA</div>
+      </div>
+      <div>
+        <div class="stat-num">2+</div>
+        <div class="stat-label">Internships</div>
+      </div>
+      <div>
+        <div class="stat-num">2</div>
+        <div class="stat-label">Research Papers</div>
+      </div>
+      <div>
+        <div class="stat-num">🥇</div>
+        <div class="stat-label">Gold Medal</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">// 01 — About</div>
+    <h2>Who I am</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a <strong>final-year Computer Science student at SRM University AP</strong>, graduating in 2026 with a CGPA of 9.11. I build full-stack applications, explore secure communication systems, and apply machine learning to real-world problems.</p>
+        <p>My work spans <strong>MERN stack development</strong>, <strong>cybersecurity</strong>, and <strong>AI/ML research</strong>. I care about building things that are not just functional, but robust and meaningful.</p>
+        <p>Outside code, I'm a hackathon finalist, a published conference presenter, and a Gold Medal awardee for research on groundwater fluoride prediction using machine learning.</p>
+        <div class="about-badges">
+          <span class="badge">MERN Stack</span>
+          <span class="badge">Cybersecurity</span>
+          <span class="badge">AI / ML</span>
+          <span class="badge">CoAP / DTLS</span>
+          <span class="badge">Steganography</span>
+          <span class="badge">REST APIs</span>
+        </div>
+      </div>
+      <div>
+        <div class="education-card">
+          <div class="edu-year">2022 – 2026</div>
+          <div class="edu-degree">B.Tech — Computer Science</div>
+          <div class="edu-inst">SRM University, Amaravati</div>
+          <span class="edu-score">CGPA: 9.11</span>
+        </div>
+        <div class="education-card">
+          <div class="edu-year">2022</div>
+          <div class="edu-degree">Class 12 — State Board</div>
+          <div class="edu-inst">Andhra Pradesh</div>
+          <span class="edu-score">97.5%</span>
+        </div>
+        <div class="education-card">
+          <div class="edu-year">2020</div>
+          <div class="edu-degree">Class 10 — State Board</div>
+          <div class="edu-inst">Andhra Pradesh</div>
+          <span class="edu-score">100%</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label">// 02 — Experience</div>
+    <h2>Where I've worked</h2>
+    <div class="exp-timeline">
+      <div class="exp-item">
+        <div class="exp-date">Dec 2024 – Mar 2025</div>
+        <div class="exp-title">MERN Stack Developer Intern</div>
+        <div class="exp-company">2LYP Computations</div>
+        <div class="exp-desc">Migrated a full-stack application from Flask + MySQL to the MERN stack. Enhanced user experience with autosave, preloaders, and a secure password recovery flow.</div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-date">Jun 2024 – Jul 2024</div>
+        <div class="exp-title">Cybersecurity Intern</div>
+        <div class="exp-company">Edunet Foundation (with IBM SkillsBuild &amp; SRM University AP)</div>
+        <div class="exp-desc">Applied steganography and cryptographic techniques using Kali Linux. Completed a hands-on program bridging academic knowledge with industry security practices.</div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-date">Jan 2024 – Present</div>
+        <div class="exp-title">Research Contributor</div>
+        <div class="exp-company">SRM University, Amaravati</div>
+        <div class="exp-desc">Using ML models to predict fluoride contamination in groundwater. Analyzes hydrochemical parameters including cations and anions from real water sample datasets.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">// 03 — Projects</div>
+    <h2>Things I've built</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-tag">Full-Stack &nbsp;·&nbsp; Security</div>
+        <div class="project-name">Faculty Appointment Management System</div>
+        <div class="project-desc">A web app to streamline faculty–student scheduling, with JWT authentication, role-based access control, protected routes, and secure RESTful API design.</div>
+        <div class="project-tech">
+          <span class="tech-pill">React</span>
+          <span class="tech-pill">Node.js</span>
+          <span class="tech-pill">Express</span>
+          <span class="tech-pill">MongoDB</span>
+          <span class="tech-pill">JWT</span>
+        </div>
+        <a href="https://github.com/SharonOliv/Faculty-Appointment-System" class="project-link">View Project →</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">Networking &nbsp;·&nbsp; Privacy</div>
+        <div class="project-name">Metadata-Resistant Communication Network</div>
+        <div class="project-desc">A client-server system built for anonymous communication using CoAP over DTLS, with traffic obfuscation and Tor/I2P routing to mask timing, size, and user identity.</div>
+        <div class="project-tech">
+          <span class="tech-pill">CoAP</span>
+          <span class="tech-pill">DTLS</span>
+          <span class="tech-pill">Tor / I2P</span>
+          <span class="tech-pill">Cryptography</span>
+        </div>
+        <a href="https://github.com/SharonOliv/Meta-data-resistant-network" class="project-link">View Project →</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">AI / ML &nbsp;·&nbsp; Research</div>
+        <div class="project-name">Groundwater Fluoride Prediction</div>
+        <div class="project-desc">Machine learning models for predicting fluoride contamination using hydrochemical parameters. Awarded the Gold Medal at the 9th Research Day, SRM University AP.</div>
+        <div class="project-tech">
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">Scikit-learn</span>
+          <span class="tech-pill">Data Analysis</span>
+          <span class="tech-pill">ML Models</span>
+        </div>
+        <!--<a href="#" class="project-link">Conference Paper →</a><!-->
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">Hackathon &nbsp;·&nbsp; PropTech</div>
+        <div class="project-name">Smart Rent</div>
+        <div class="project-desc">A platform to streamline rental property search and roommate matching through intelligent filtering and user preferences. Finalist at Navonmesh 2.0 (SSIPMT, Raipur).</div>
+        <div class="project-tech">
+          <span class="tech-pill">React</span>
+          <span class="tech-pill">Node.js</span>
+          <span class="tech-pill">MongoDB</span>
+          <span class="tech-pill">Filtering</span>
+        </div>
+        <!--<a href="#" class="project-link">View Project →</a><!-->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label">// 04 — Skills</div>
+    <h2>What I work with</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-label">Languages</div>
+        <ul class="skill-list">
+          <li>JavaScript</li>
+          <li>Python</li>
+          <li>C</li>
+          <li>C++</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Frontend</div>
+        <ul class="skill-list">
+          <li>React.js</li>
+          <li>Next.js</li>
+          <li>HTML &amp; CSS</li>
+          <li>Figma</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Backend</div>
+        <ul class="skill-list">
+          <li>Node.js</li>
+          <li>Express.js</li>
+          <li>REST APIs</li>
+          <li>JWT Auth</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Databases</div>
+        <ul class="skill-list">
+          <li>MongoDB</li>
+          <li>MySQL</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Security</div>
+        <ul class="skill-list">
+          <li>Kali Linux</li>
+          <li>Steganography</li>
+          <li>Cryptography</li>
+          <li>CoAP / DTLS</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Tools</div>
+        <ul class="skill-list">
+          <li>Git &amp; GitHub</li>
+          <li>OOP</li>
+          <li>Data Structures</li>
+          <li>Canva</li>      
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <div class="section-label">// 05 — Achievements</div>
+    <h2>Recognition</h2>
+    <div class="achievements-list">
+      <div class="achievement-item">
+        <div class="ach-icon">🥇</div>
+        <div>
+          <div class="ach-title">Gold Medal — 9th Research Day, SRM University AP</div>
+          <div class="ach-desc">Awarded for the research paper "Impact of Charge Balance Errors on Groundwater Fluoride Prediction using Machine Learning Models."</div>
+        </div>
+      </div>
+      <div class="achievement-item">
+        <div class="ach-icon">🏆</div>
+        <div>
+          <div class="ach-title">Finalist — Navonmesh 2.0 Hackathon (SSIPMT, Raipur)</div>
+          <div class="ach-desc">Developed <em>Smart Rent</em>, a platform to streamline rental property search and intelligent roommate matching.</div>
+        </div>
+      </div>
+      <div class="achievement-item">
+        <div class="ach-icon">🎤</div>
+        <div>
+          <div class="ach-title">International Conference Presenter — WE Meet 2025</div>
+          <div class="ach-desc">Presented research on assessment of charge balance error on predictability of groundwater fluoride through machine learning models. SRM University, Feb 2025.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="section-label">// 06 — Certifications</div>
+    <h2>Credentials</h2>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-issuer">MongoDB</div>
+        <div class="cert-name">Associate Developer (Node.js)</div>
+        <div class="cert-date">May 2025</div>
+        <a href="https://learn.mongodb.com/c/PVIHoiVRTvCBVSI31PDslA"
+            target="_blank"
+            class="cert-link">
+            View Certificate ↗
+        </a>
+      </div>    
+      <div class="cert-card">
+        <div class="cert-issuer">Google</div>
+        <div class="cert-name">Cybersecurity Professional Certificate</div>
+        <div class="cert-date">May 2025</div>
+        <a href="https://www.coursera.org/account/accomplishments/professional-cert/certificate/MOTE95YD7LO1"
+            target="_blank"
+            class="cert-link">
+            View Certificate ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">// 07 — Contact</div>
+    <div class="contact-inner">
+      <h2>Let's connect</h2>
+      <p style="color: var(--muted); margin-bottom: 0.5rem;">Open to full-time roles, internships, and interesting collaborations.</p>
+      <div class="contact-links">
+        <a href="mailto:sharonoliviachintala@gmail.com" class="contact-link">
+          <span class="contact-link-icon">✉️</span>
+          sharonoliviachintala@gmail.com
+        </a>
+        <a href="https://linkedin.com/in/sharon-olivia-chintala" target="_blank" class="contact-link">
+          <span class="contact-link-icon">💼</span>
+          linkedin.com/in/sharon-olivia-chintala
+        </a>
+        <a href="https://github.com/SharonOliv" target="_blank" class="contact-link">
+          <span class="contact-link-icon">🐙</span>
+          github.com/sharonoliviachintala
+        </a>
+        <!--<a href="tel:+919441953927" class="contact-link">
+          <span class="contact-link-icon">📞</span>
+          +91 94419 53927
+        </a>-->
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Built with vanilla HTML/CSS &nbsp;·&nbsp; Sharon Olivia Chintala © 2025
+  </footer>
+
+</body>
+</html>
