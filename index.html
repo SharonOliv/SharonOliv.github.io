@@ -284,6 +284,11 @@
       transition: border-color 0.2s;
     }
     .project-link:hover { border-color: var(--teal); }
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
 
     /* ── SKILLS ── */
     .skills-grid {
@@ -495,7 +500,7 @@
         <div class="exp-desc">Applied steganography and cryptographic techniques using Kali Linux. Completed a hands-on program bridging academic knowledge with industry security practices.</div>
       </div>
       <div class="exp-item">
-        <div class="exp-date">Jan 2024 – Present</div>
+        <div class="exp-date">Jan 2024 – May 2026</div>
         <div class="exp-title">Research Contributor</div>
         <div class="exp-company">SRM University, Amaravati</div>
         <div class="exp-desc">Using ML models to predict fluoride contamination in groundwater. Analyzes hydrochemical parameters including cations and anions from real water sample datasets.</div>
@@ -546,7 +551,6 @@
           <span class="tech-pill">Data Analysis</span>
           <span class="tech-pill">ML Models</span>
         </div>
-        <!--<a href="#" class="project-link">Conference Paper →</a><!-->
       </div>
 
       <div class="project-card">
@@ -559,7 +563,40 @@
           <span class="tech-pill">MongoDB</span>
           <span class="tech-pill">Filtering</span>
         </div>
-        <!--<a href="#" class="project-link">View Project →</a><!-->
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">Frontend &nbsp;·&nbsp; OTT Platform</div>
+        <div class="project-name">Lumi</div>
+        <div class="project-desc">A responsive OTT streaming platform with role-based access control, implementing client-side authentication, protected routes, and centralized state management using Redux Toolkit. Integrated a mock REST API with Axios to support content management, watchlists, reviews, search, filtering, and persistent user preferences with a modular, reusable component architecture.</div>
+        <div class="project-tech">
+          <span class="tech-pill">React</span>
+          <span class="tech-pill">TypeScript</span>
+          <span class="tech-pill">Redux Toolkit</span>
+          <span class="tech-pill">Axios</span>
+          <span class="tech-pill">Bootstrap</span>
+          <span class="tech-pill">Vite</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/your-username/lumi" class="project-link">View Project →</a>
+          <a href="https://lumi-mocha.vercel.app/login" class="project-link">Live Demo →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">Frontend &nbsp;·&nbsp; Game</div>
+        <div class="project-name">Matcha</div>
+        <div class="project-desc">A responsive memory card matching game with dynamic data fetched from public APIs, implementing asynchronous deck generation, custom hooks for adaptive board sizing and score persistence, and smooth card animations. Designed reusable components with accessibility in mind, including keyboard navigation, responsive layouts, and local storage-based progress tracking.</div>
+        <div class="project-tech">
+          <span class="tech-pill">React</span>
+          <span class="tech-pill">TypeScript</span>
+          <span class="tech-pill">Vite</span>
+          <span class="tech-pill">CSS</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/SharonOliv/Matcha" class="project-link">View Project →</a>
+          <a href="https://your-matcha-live-url.vercel.app" class="project-link">Live Demo →</a>
+        </div>
       </div>
 
     </div>
@@ -574,6 +611,7 @@
         <div class="skill-group-label">Languages</div>
         <ul class="skill-list">
           <li>JavaScript</li>
+          <li>TypeScript</li>
           <li>Python</li>
           <li>C</li>
           <li>C++</li>
@@ -584,7 +622,9 @@
         <ul class="skill-list">
           <li>React.js</li>
           <li>Next.js</li>
+          <li>Redux Toolkit</li>
           <li>HTML &amp; CSS</li>
+          <li>Bootstrap</li>
           <li>Figma</li>
         </ul>
       </div>
@@ -617,9 +657,11 @@
         <div class="skill-group-label">Tools</div>
         <ul class="skill-list">
           <li>Git &amp; GitHub</li>
+          <li>Vite</li>
+          <li>Axios</li>
           <li>OOP</li>
           <li>Data Structures</li>
-          <li>Canva</li>      
+          <li>Canva</li>
         </ul>
       </div>
     </div>
@@ -701,10 +743,6 @@
           <span class="contact-link-icon">🐙</span>
           github.com/sharonoliviachintala
         </a>
-        <!--<a href="tel:+919441953927" class="contact-link">
-          <span class="contact-link-icon">📞</span>
-          +91 94419 53927
-        </a>-->
       </div>
     </div>
   </section>
