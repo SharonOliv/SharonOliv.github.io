@@ -83,6 +83,11 @@ section.alt .card { background: var(--bg); }
 .pill { font-size: 0.74rem; padding: 0.22rem 0.65rem; border: 1px solid var(--line); border-radius: 6px; color: var(--muted); }
 .links { display: flex; gap: 0.7rem; flex-wrap: wrap; }
 
+
+/* ===================== LIVE PREVIEW SCREEN (inside project cards) ===================== */
+.preview { display: block; position: relative; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 8px; border: 1px solid var(--line); margin-bottom: 1.2rem; background: #111; }
+.preview iframe { width: 1280px; height: 800px; border: 0; transform-origin: top left; pointer-events: none; } /* JS below scales it to fit the card */
+
 /* ===================== EDUCATION + CERTIFICATIONS ===================== */
 .edu { border-left: 2px solid var(--text); padding-left: 1.1rem; max-width: 420px; }
 .edu h3 { font-size: 1.15rem; margin: 0.2rem 0; }
@@ -214,8 +219,12 @@ footer { text-align: center; padding: 1.5rem 5vw; font-size: 0.82rem; color: var
 
     <!-- Website: SmartRent -->
     <div class="card">
+      <!-- Live preview: shows the real site; clicking opens it -->
+      <a class="preview" href="https://smart-rent-woad.vercel.app/" target="_blank" rel="noopener" aria-label="Open SmartRent live demo">
+        <iframe src="https://smart-rent-woad.vercel.app/" title="SmartRent preview" loading="lazy" tabindex="-1"></iframe>
+      </a>
       <h4>SmartRent</h4>
-      <p>A rental platform that combines property search with roommate matching. It has JWT login, bcrypt password hashing, image uploads, a 360° property viewer, and a matching engine that scores compatibility across four personality traits. Finalist at Navonmesh 2.0 (SSIPMT, Raipur).</p>
+      <p>A full-stack house rental platform built with React, Node.js, Express and MongoDB. It enables user to browse and post listings, book a property for a date range, take a personality quiz to find compatible roommates, view listings in 360°/VR, and chat with an AI assistant.</p>
       <div class="tech"><span class="pill">React</span><span class="pill">Node.js</span><span class="pill">Express</span><span class="pill">MongoDB</span><span class="pill">Panolens (Three.js)</span><span class="pill">Multer</span></div>
       <div class="links">
         <a href="https://github.com/SharonOliv/Smart-Rent" class="btn btn-primary btn-sm">View code</a>
@@ -225,13 +234,16 @@ footer { text-align: center; padding: 1.5rem 5vw; font-size: 0.82rem; color: var
 
     <!-- Website: OliveBakes -->
     <div class="card">
+      <!-- TODO: once you have the OliveBakes live link, paste it into href and src and remove the comment markers
+      <a class="preview" href="YOUR_LINK" target="_blank" rel="noopener"><iframe src="YOUR_LINK" title="OliveBakes preview" loading="lazy" tabindex="-1"></iframe></a>
+      -->
       <h4>OliveBakes</h4>
-      <p>A bakery ordering platform with customer accounts, an admin portal and a calendar-based delivery slot picker. Security covers role-based access control, scrypt credential hashing, signed JWTs, API rate limiting and signed Cloudinary uploads.</p>
+      <p>A full-stack online bakery built with built with Angular 19, Node.js/Express, PostgreSQL (Neon) and Cloudinary. It supports delivery-day ordering, custom cake quotes and a role-protected admin portal.</p>
       <div class="tech"><span class="pill">Angular</span><span class="pill">Node.js</span><span class="pill">Express</span><span class="pill">PostgreSQL</span><span class="pill">Cloudinary</span><span class="pill">Neon</span></div>
       <div class="links">
         <!-- TODO: replace both "#" with your real OliveBakes GitHub and live links -->
-        <a href="#" class="btn btn-primary btn-sm">View code</a>
-        <a href="#" class="btn btn-outline btn-sm">Live demo</a>
+        <a href="https://github.com/SharonOliv/OliviaBakes" class="btn btn-primary btn-sm">View code</a>
+        <a href="https://olivia-bakes.vercel.app" class="btn btn-outline btn-sm">Live demo</a>
       </div>
     </div>
 
@@ -245,6 +257,10 @@ footer { text-align: center; padding: 1.5rem 5vw; font-size: 0.82rem; color: var
 
     <!-- Design: Lumi -->
     <div class="card">
+      <!-- Live preview: shows the real site; clicking opens it -->
+      <a class="preview" href="https://lumi-mocha.vercel.app/" target="_blank" rel="noopener" aria-label="Open Lumi live demo">
+        <iframe src="https://lumi-mocha.vercel.app/" title="Lumi preview" loading="lazy" tabindex="-1"></iframe>
+      </a>
       <h4>Lumi</h4>
       <p>A responsive streaming app with role-based access, protected routes and state managed with Redux Toolkit. A mock REST API handles content management, watchlists, reviews, search, filtering and saved user preferences, all built from reusable components.</p>
       <div class="tech"><span class="pill">React</span><span class="pill">TypeScript</span><span class="pill">Redux Toolkit</span><span class="pill">Axios</span><span class="pill">Bootstrap</span><span class="pill">Vite</span></div>
@@ -256,6 +272,10 @@ footer { text-align: center; padding: 1.5rem 5vw; font-size: 0.82rem; color: var
 
     <!-- Design: Matcha -->
     <div class="card">
+      <!-- Live preview: shows the real site; clicking opens it -->
+      <a class="preview" href="https://matcha-two-topaz.vercel.app/" target="_blank" rel="noopener" aria-label="Open Matcha live demo">
+        <iframe src="https://matcha-two-topaz.vercel.app/" title="Matcha preview" loading="lazy" tabindex="-1"></iframe>
+      </a>
       <h4>Matcha</h4>
       <p>A memory card matching game that builds each deck from public API data. Custom hooks adapt the board size and save scores, cards animate smoothly, and the game supports keyboard navigation and responsive layouts.</p>
       <div class="tech"><span class="pill">React</span><span class="pill">TypeScript</span><span class="pill">Vite</span><span class="pill">CSS</span><span class="pill">Local storage</span></div>
@@ -366,5 +386,16 @@ footer { text-align: center; padding: 1.5rem 5vw; font-size: 0.82rem; color: var
 <!-- ===================== FOOTER ===================== -->
 <footer>Built with vanilla HTML and CSS. © 2026 Sharon Olivia Chintala</footer>
 
+<script>
+/* ===================== SCALE LIVE PREVIEWS TO FIT THEIR CARD ===================== */
+function fitPreviews() {
+  document.querySelectorAll('.preview').forEach(function (box) {
+    var f = box.querySelector('iframe');
+    if (f) f.style.transform = 'scale(' + box.clientWidth / 1280 + ')';
+  });
+}
+window.addEventListener('load', fitPreviews);
+window.addEventListener('resize', fitPreviews);
+</script>
 </body>
 </html>
